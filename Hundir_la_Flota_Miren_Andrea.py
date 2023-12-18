@@ -3,6 +3,12 @@ import random
 
 #TABLEROS
 
+
+
+def colocar_barcos(tablero,lista_esloras):
+
+
+
 #Tablero vacío
 tablero = np.full((10, 10)," ")
 print(tablero)
@@ -77,12 +83,37 @@ Jugadorx va modificando el tablero de la máquina
 La máquina va modificando el tablero de jugadorx
 
 
-#DURACIÓN DEL JUEGO
 
-while "O" in tablero_jugadorx or "O" in tablero_maquina:  #BUCLE PRINCIPAL
-    disparo_jugadorx()
+#BUCLE PRINCIPAL
 
-    disparo_maquina()
+while "O" in tablero_jugadorx or "O" in tablero_maquina:  
+
+    turno_jugadorx(tablero_maquina)
+
+    if fin_partida(tablero_jugadorx, tablero_maquina):
+        break
+ 
+
+
+ 
+    turno_maquina(tablero_jugadorx)
+
+    if verificar_ganador(tablero_jugadorx, tablero_maquina)
+        break
+
+    
+
+def turno_jugadorx(tablero_maquina):
+    if turno_jugadorx:
+        coordenada1= input("Dime un numero",)
+        coordenada1= input("Dime un numero",)
+        disparo (coordenada1,coordenada2)
+
+def turno_maquina(tablero_jugadorx):
+    if turno_maquina:
+        coordenada1 = np.random.randint(0, 10)
+        coordenada2 = np.random.randint(0, 10)
+        disparo (coordenada1,coordenada2)
 
 
 
@@ -95,16 +126,21 @@ elif "O" not in tablero_maquina:   #Jugadorx gana cuando todos los "O" se han co
 
 
 
+
+
+
 #DISPAROS
 def disparo (coordenada1,coordenada2):
     if tablero[coordenada1,coordenada2]== " ":
         tablero[coordenada1,coordenada2]= "_"
         print("¡Agua!")
         print(tablero)
+        break
     if tablero[coordenada1,coordenada2]== "O":
         tablero[coordenada1,coordenada2]= "X"
         print("¡Tocado!")
         print(tablero)
+        continue
 
 
 #BUCLE DE DISPAROS
@@ -115,9 +151,9 @@ if tablero[coordenada1,coordenada2]= "X":
 
 
 #FIN DE LA PARTIDA   (se puede hacer todo con un bucle while)
-
-"O" not in tablero_jugadorx :
-    print("¡Perdiste!")
     
-"O" not in tablero_maquina:   #Jugadorx gana cuando todos los "O" se han convertido en "X" en el tablero de la maquina
-    print("¡Ganaste!")
+def fin_partida(tablero_jugadorx, tablero_maquina):
+    if "O" not in tablero_jugadorx :
+        print("¡Perdiste!")
+    elif "O" not in tablero_maquina:   #Jugadorx gana cuando todos los "O" se han convertido en "X" en el tablero de la maquina
+    print("¡Ganaste, humanx!")
