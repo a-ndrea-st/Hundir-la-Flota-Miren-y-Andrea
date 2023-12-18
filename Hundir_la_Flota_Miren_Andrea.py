@@ -79,7 +79,12 @@ La máquina va modificando el tablero de jugadorx
 
 #DURACIÓN DEL JUEGO
 
-while "O" in tablero_jugadorx or "O" in tablero_maquina:
+while "O" in tablero_jugadorx or "O" in tablero_maquina:  #BUCLE PRINCIPAL
+    disparo_jugadorx()
+
+    disparo_maquina()
+
+
 
 elif "O" not in tablero_jugadorx :
     print("¡Perdiste!")
@@ -95,9 +100,11 @@ def disparo (coordenada1,coordenada2):
     if tablero[coordenada1,coordenada2]== " ":
         tablero[coordenada1,coordenada2]= "_"
         print("¡Agua!")
+        print(tablero)
     if tablero[coordenada1,coordenada2]== "O":
         tablero[coordenada1,coordenada2]= "X"
         print("¡Tocado!")
+        print(tablero)
 
 
 #BUCLE DE DISPAROS
