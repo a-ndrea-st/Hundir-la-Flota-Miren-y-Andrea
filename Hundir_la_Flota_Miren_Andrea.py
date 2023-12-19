@@ -112,8 +112,7 @@ while "O" in tablero_jugadorx or "O" in tablero_maquina:
 
 if "O" not in tablero_jugadorx:
     print("¡Perdiste!")
-if "O" not in tablero_maquina:   #Jugadorx gana cuando todos los "O" se han convertido en "X" en el tablero de la maquina
-    print("¡Ganaste!")
+if "O" not in tablero_maquina:   
 
 
 #DISPAROS
@@ -132,19 +131,10 @@ def disparo_jugadorx (coordenada1, coordenada2, tablero_maquina, tablero_vista_p
     elif tablero_maquina[coordenada1,coordenada2]== "O":
         tablero_maquina[coordenada1,coordenada2]= "X"
         tablero_vista_para_jugadorx_de_maquina[coordenada1,coordenada2]= "X"
-        print("¡Has tocado un barco!")
+        print("¡Tocado!")
         print(tablero_vista_para_jugadorx_de_maquina)
         if barco_hundido(coordenada1, coordenada2, tablero_maquina):
-            print("¡Has hundido un barco!")
-
-         '''
-        if tablero_maquina[coordenada1,coordenada2]== "O" and ------ #algo!
-            tablero_maquina[coordenada1,coordenada2]= "X"
-            tablero_vista_para_jugadorx_de_maquina[coordenada1,coordenada2]= "X"
-            print("¡Has hundido un barco!")
-            barcos_hundidos_demaquina= barcos_hundidos_demaquina+1
-            print(tablero_vista_para_jugadorx_de_maquina)
-          '''
+            print("...y hundido!")
 
 #Disparo de la máquina
 def disparo_maquina (coordenada1,coordenada2, tablero_jugadorx, tablero_vista_para_maquina_de_jugadorx):
@@ -157,24 +147,15 @@ def disparo_maquina (coordenada1,coordenada2, tablero_jugadorx, tablero_vista_pa
         tablero_vista_para_maquina_de_jugadorx[coordenada1,coordenada2]= "X"
         print("¡La máquina te ha tocado un barco!")
         if barco_hundido(coordenada1, coordenada2, tablero_jugadorx):
-            print("¡La máquina te ha hundido un barco!")
-
-        '''
-        if tablero_maquina[coordenada1,coordenada2]== "O" and ------ #algo!
-            tablero_maquina[coordenada1,coordenada2]= "X"
-            tablero_vista_para_maquina_de_jugadorx[coordenada1,coordenada2]= "X"
-            print("¡La máquina te ha hundido un barco!")
-            barcos_hundidos_dejugadorx= barcos_hundidos_dejugadorx+1
-        '''
+            print("...y te lo ha hundido!")
 
 #HUNDIR UN BARCO
 def barco_hundido(coordenada1, coordenada2, tablero):
     dicc_esloras = {4: 1, 3: 2, 2: 3, 1: 4}  
-    for x, y in dicc_esloras.items():
-        for i in range(y):
-
-            for i in range(x):
-                if all(tablero[coordenada1, coordenada2 + i] == "X"):
+    for cantidad, esloras in dicc_esloras.items():
+        for i in range(esloras):   
+            for i in range(cantidad):
+                if all(tablero[coordenada1, coordenada2 + i] == "X"):   #si todo está tocado
                     return True 
     return False 
 
