@@ -50,8 +50,9 @@ tablero_vista_para_maquina_de_jugadorx=np.full((10, 10)," ")     #en este se ve 
     #En este solamente se verán X y - (NO LO VE JUGADORX
 
 #DURANTE EL JUEGO
-Jugadorx va modificando el tablero de la máquina y el de su vista
+'''Jugadorx va modificando el tablero de la máquina y el de su vista
 La máquina va modificando el tablero de jugadorx y el de su vista
+'''
 
 #ÍNDICE
 
@@ -117,8 +118,9 @@ if "O" not in tablero_maquina:   #Jugadorx gana cuando todos los "O" se han conv
 
 #DISPAROS
 
-#En cada disparo se modifica tanto el tablero del contrario como la vista que yo tengo
-#Como jugadorx solamente veo mi tablero y la vista del tablero de la máquina con X y -
+'''En cada disparo se modifica tanto el tablero del contrario como la vista que yo tengo
+Como jugadorx solamente veo mi tablero y la vista del tablero de la máquina con X y -
+'''
 
 #Disparo de persona
 def disparo_jugadorx (coordenada1, coordenada2, tablero_maquina, tablero_vista_para_jugadorx_de_maquina):
