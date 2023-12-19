@@ -2,7 +2,7 @@ import numpy as np
 import random 
 
 #TABLEROS
-
+#Deberían ser 4 tableros: 2 de máquina y 2 de jugadorx
 
 
 def colocar_barcos(tablero,lista_esloras):
@@ -13,11 +13,18 @@ def colocar_barcos(tablero,lista_esloras):
 tablero = np.full((10, 10)," ")
 print(tablero)
 
-#Tablero de la máquina
+#Tableros de la máquina
 tablero_maquina = np.full((10, 10)," ")
 
-#Tablero jugadorx
+tablero_vista_de_jugadorx_maquina= np.full((10, 10)," ")
+
+#Tableros jugadorx
 tablero_jugadorx = np.full((10, 10)," ")
+
+tablero_vista_de_jugadorx_maquina=np.full((10, 10)," ")
+    #en este se ve el avance de jugadorx en el de maquina
+
+
 
 #COLOCACIÓN ALEATORIA DE LOS BARCOS EN EL TABLERO DE LA MÁQUINA 
 lista_esloras = [1,1,1,1,2,2,2,3,3,4]
@@ -78,6 +85,13 @@ for eslora in lista_esloras:
             continue
 tablero_jugadorx
 
+#HAY QUE GENERAR LOS TABLEROS DE VISTA, QUE EMPIEZAN A 0:
+#Se van modificando con los disparos.  Solo tendrán X y -   (NO tienen O)
+tablero_vista_de_jugadorx_maquina= np.full((10, 10)," ")
+
+tablero_vista_de_jugadorx_maquina=np.full((10, 10)," ")
+
+
 #DURANTE EL JUEGO
 Jugadorx va modificando el tablero de la máquina
 La máquina va modificando el tablero de jugadorx
@@ -130,6 +144,9 @@ elif "O" not in tablero_maquina:   #Jugadorx gana cuando todos los "O" se han co
 
 
 #DISPAROS
+
+#En cada disparo se modifica tanto el tablero del contrario como la vista que yo tengo
+
 def disparo (coordenada1,coordenada2):
     if tablero[coordenada1,coordenada2]== " ":
         tablero[coordenada1,coordenada2]= "_"
