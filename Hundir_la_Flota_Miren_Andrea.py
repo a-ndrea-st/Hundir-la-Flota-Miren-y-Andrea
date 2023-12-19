@@ -136,11 +136,16 @@ def disparo (coordenada1,coordenada2):
         print("¡Agua!")
         print(tablero)
         break
+
     if tablero[coordenada1,coordenada2]== "O":
         tablero[coordenada1,coordenada2]= "X"
         print("¡Tocado!")
         print(tablero)
         continue
+
+
+#HUNDIR UN BARCO
+Ver cómo hacer para que de hundido.
 
 
 #BUCLE DE DISPAROS
