@@ -1,122 +1,62 @@
 import numpy as np
 import random 
 
-#TABLEROS
-#Deberían ser 4 tableros: 2 de máquina y 2 de jugadorx
+#TABLEROS: 4 tableros: 2 de máquina y 2 de jugadorx
 
+#FUNCIÓN PARA LA COLOCACIÓN ALEATORIA DE LOS BARCOS EN LOS TABLEROS (JUGADORX Y MÁQUINA)
+lista_esloras = [1,1,1,1,2,2,2,3,3,4]
+barcos_colocados=0
 
 def colocar_barcos(tablero,lista_esloras):
+    tablero= np.full((10, 10)," ")
+    lista_esloras = [1,1,1,1,2,2,2,3,3,4]
+    for eslora in lista_esloras:
+        while barcos_colocados < len(lista_esloras):
+            orientacion = random.choice(['E', 'O', 'N', 'S'])
+            fila = np.random.randint(0,10)
+            columna= np.random.randint(0,10)
+            if orientacion == 'E' and 0 <= columna + eslora < 10 and 'O' not in tablero[fila, columna: columna + eslora]:
+                tablero[fila, columna: columna + eslora] = 'O'
+                barcos_colocados = barcos_colocados +1
+                break
+            elif orientacion == 'O' and 0 <= columna - eslora < 10 and 'O' not in tablero[fila, columna: columna - eslora:-1]:
+                tablero[fila, columna - eslora + 1:columna + 1] = 'O'
+                barcos_colocados = barcos_colocados +1
+                break
+            elif orientacion == 'N' and 0 <= fila - eslora < 10 and 'O' not in tablero[fila - 1, columna:columna + 1]:
+                tablero[fila - eslora + 1:fila + 1, columna] = 'O'
+                barcos_colocados = barcos_colocados +1
+                break
+            elif orientacion == 'S' and 0 <= fila + eslora < 10 and 'O' not in tablero[fila:fila + eslora, columna]:
+                tablero[fila:fila + eslora, columna] = 'O'
+                barcos_colocados = barcos_colocados +1
+                break
+            else:
+                continue
+    tablero
 
-
-
-#Tablero vacío
-tablero = np.full((10, 10)," ")
-print(tablero)
 
 #Tableros de la máquina
-tablero_maquina = np.full((10, 10)," ")
+tablero_maquina = np.full((10, 10)," ")    #Tablero inicial
+colocar_barcos(tablero_maquina , [1,1,1,1,2,2,2,3,3,4] )   #Colocación aleatoria
 
-tablero_vista_de_jugadorx_maquina= np.full((10, 10)," ")
+tablero_vista_de_jugadorx_maquina= np.full((10, 10)," ")   #Tablero de vista PARA JUGADORX. Salen disparos
+    #En este solamente se verán X y -
 
 #Tableros jugadorx
 tablero_jugadorx = np.full((10, 10)," ")
+colocar_barcos(tablero_jugadorx, [1,1,1,1,2,2,2,3,3,4] )   #Colocación aleatoria
 
-tablero_vista_de_jugadorx_maquina=np.full((10, 10)," ")
-    #en este se ve el avance de jugadorx en el de maquina
-
-
-
-#COLOCACIÓN ALEATORIA DE LOS BARCOS EN EL TABLERO DE LA MÁQUINA 
-lista_esloras = [1,1,1,1,2,2,2,3,3,4]
-barcos_colocados=0
-
-for eslora in lista_esloras:
-    while barcos_colocados < len(lista_esloras):
-        orientacion = random.choice(['E', 'O', 'N', 'S'])
-        fila = np.random.randint(0,10)
-        columna= np.random.randint(0,10)
-        if orientacion == 'E' and 0 <= columna + eslora < 10 and 'O' not in tablero_maquina[fila, columna: columna + eslora]:
-            tablero_maquina[fila, columna: columna + eslora] = 'O'
-            barcos_colocados = barcos_colocados +1
-            break
-        elif orientacion == 'O' and 0 <= columna - eslora < 10 and 'O' not in tablero_maquina[fila, columna: columna - eslora:-1]:
-            tablero_maquina[fila, columna - eslora + 1:columna + 1] = 'O'
-            barcos_colocados = barcos_colocados +1
-            break
-        elif orientacion == 'N' and 0 <= fila - eslora < 10 and 'O' not in tablero_maquina[fila - 1, columna:columna + 1]:
-            tablero_maquina[fila - eslora + 1:fila + 1, columna] = 'O'
-            barcos_colocados = barcos_colocados +1
-            break
-        elif orientacion == 'S' and 0 <= fila + eslora < 10 and 'O' not in tablero_maquina[fila:fila + eslora, columna]:
-            tablero_maquinafila:fila + eslora, columna] = 'O'
-            barcos_colocados = barcos_colocados +1
-            break
-        else:
-            continue
-tablero_maquina
-
-
-#COLOCACIÓN ALEATORIA DE LOS BARCOS EN EL TABLERO DE JUGADORX
-lista_esloras = [1,1,1,1,2,2,2,3,3,4]
-barcos_colocados=0
-
-for eslora in lista_esloras:
-    while barcos_colocados < len(lista_esloras):
-        orientacion = random.choice(['E', 'O', 'N', 'S'])
-        fila = np.random.randint(0,10)
-        columna= np.random.randint(0,10)
-        if orientacion == 'E' and 0 <= columna + eslora < 10 and 'O' not in tablero_jugadorx[fila, columna: columna + eslora]:
-            tablero_jugadorx[fila, columna: columna + eslora] = 'O'
-            barcos_colocados = barcos_colocados +1
-            break
-        elif orientacion == 'O' and 0 <= columna - eslora < 10 and 'O' not in tablero_jugadorx[fila, columna: columna - eslora:-1]:
-            tablero_jugadorx[fila, columna - eslora + 1:columna + 1] = 'O'
-            barcos_colocados = barcos_colocados +1
-            break
-        elif orientacion == 'N' and 0 <= fila - eslora < 10 and 'O' not in tablero_jugadorx[fila - 1, columna:columna + 1]:
-            tablero_jugadorx[fila - eslora + 1:fila + 1, columna] = 'O'
-            barcos_colocados = barcos_colocados +1
-            break
-        elif orientacion == 'S' and 0 <= fila + eslora < 10 and 'O' not in tablero_jugadorx[fila:fila + eslora, columna]:
-            tablero_jugadorx[fila:fila + eslora, columna] = 'O'
-            barcos_colocados = barcos_colocados +1
-            break
-        else:
-            continue
-tablero_jugadorx
-
-#HAY QUE GENERAR LOS TABLEROS DE VISTA, QUE EMPIEZAN A 0:
-#Se van modificando con los disparos.  Solo tendrán X y -   (NO tienen O)
-tablero_vista_de_jugadorx_maquina= np.full((10, 10)," ")
-
-tablero_vista_de_jugadorx_maquina=np.full((10, 10)," ")
-
+tablero_vista_de_jugadorx_maquina=np.full((10, 10)," ")     #en este se ve el avance de jugadorx en el de maquina
+    #En este solamente se verán X y - (NO LO VE JUGADORX
 
 #DURANTE EL JUEGO
-Jugadorx va modificando el tablero de la máquina
-La máquina va modificando el tablero de jugadorx
+Jugadorx va modificando el tablero de la máquina y el de su vista
+La máquina va modificando el tablero de jugadorx y el de su vista
 
 
 
-#BUCLE PRINCIPAL
-
-while "O" in tablero_jugadorx or "O" in tablero_maquina:  
-
-    turno_jugadorx(tablero_maquina)
-
-    if fin_partida(tablero_jugadorx, tablero_maquina):
-        break
- 
-
-
- 
-    turno_maquina(tablero_jugadorx)
-
-    if verificar_ganador(tablero_jugadorx, tablero_maquina)
-        break
-
-    
-
+#FUNCIONES PARA CADA TURNO:
 def turno_jugadorx(tablero_maquina):
     if turno_jugadorx:
         coordenada1= input("Dime un numero",)
@@ -129,18 +69,35 @@ def turno_maquina(tablero_jugadorx):
         coordenada2 = np.random.randint(0, 10)
         disparo (coordenada1,coordenada2)
 
-
-
-elif "O" not in tablero_jugadorx :
-    print("¡Perdiste!")
+#FIN DE LA PARTIDA   (se puede hacer todo con un bucle while)
     
-elif "O" not in tablero_maquina:   #Jugadorx gana cuando todos los "O" se han convertido en "X" en el tablero de la maquina
+def fin_partida(tablero_jugadorx, tablero_maquina):
+    if "O" not in tablero_jugadorx :
+        print("¡Perdiste!")
+    elif "O" not in tablero_maquina:   #Jugadorx gana cuando todos los "O" se han convertido en "X" en el tablero de la maquina
+    print("¡Ganaste, humanx!")
+    continue
+
+
+#BUCLE PRINCIPAL:
+
+while "O" in tablero_jugadorx or "O" in tablero_maquina:  
+
+    turno_jugadorx(tablero_maquina)
+
+    if fin_partida(tablero_jugadorx, tablero_maquina):
+        break
+ 
+    turno_maquina(tablero_jugadorx)
+
+    if verificar_ganador(tablero_jugadorx, tablero_maquina)
+        break
+
+"O" not in tablero_jugadorx:
+    print("¡Perdiste!")
+
+"O" not in tablero_maquina:   #Jugadorx gana cuando todos los "O" se han convertido en "X" en el tablero de la maquina
     print("¡Ganaste!")
-
-
-
-
-
 
 
 #DISPAROS
@@ -172,10 +129,3 @@ if tablero[coordenada1,coordenada2]= "X":
 
 
 
-#FIN DE LA PARTIDA   (se puede hacer todo con un bucle while)
-    
-def fin_partida(tablero_jugadorx, tablero_maquina):
-    if "O" not in tablero_jugadorx :
-        print("¡Perdiste!")
-    elif "O" not in tablero_maquina:   #Jugadorx gana cuando todos los "O" se han convertido en "X" en el tablero de la maquina
-    print("¡Ganaste, humanx!")
