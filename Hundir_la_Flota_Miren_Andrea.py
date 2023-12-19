@@ -35,19 +35,18 @@ def colocar_barcos(tablero,lista_esloras):
                 continue
     tablero
 
-
-#Tableros de la máquina
+#Tableros en que se ven barcos de máquina
 tablero_maquina = np.full((10, 10)," ")    #Tablero inicial
 colocar_barcos(tablero_maquina , [1,1,1,1,2,2,2,3,3,4] )   #Colocación aleatoria
 
-tablero_vista_de_jugadorx_maquina= np.full((10, 10)," ")   #Tablero de vista PARA JUGADORX. Salen disparos
+tablero_vista_para_jugadorx_de_maquina= np.full((10, 10)," ")   #Tablero de vista PARA JUGADORX. Salen disparos
     #En este solamente se verán X y -
 
-#Tableros jugadorx
+#Tableros en que se ven barcos de jugadorx
 tablero_jugadorx = np.full((10, 10)," ")
 colocar_barcos(tablero_jugadorx, [1,1,1,1,2,2,2,3,3,4] )   #Colocación aleatoria
 
-tablero_vista_de_jugadorx_maquina=np.full((10, 10)," ")     #en este se ve el avance de jugadorx en el de maquina
+tablero_vista_para_maquina_de_jugadorx=np.full((10, 10)," ")     #en este se ve el avance de jugadorx en el de maquina
     #En este solamente se verán X y - (NO LO VE JUGADORX
 
 #DURANTE EL JUEGO
@@ -55,19 +54,18 @@ Jugadorx va modificando el tablero de la máquina y el de su vista
 La máquina va modificando el tablero de jugadorx y el de su vista
 
 
-
 #FUNCIONES PARA CADA TURNO:
 def turno_jugadorx(tablero_maquina):
     if turno_jugadorx:
         coordenada1= input("Dime un numero",)
         coordenada1= input("Dime un numero",)
-        disparo (coordenada1,coordenada2)
+        disparo_jugadorx (coordenada1,coordenada2)
 
 def turno_maquina(tablero_jugadorx):
     if turno_maquina:
         coordenada1 = np.random.randint(0, 10)
         coordenada2 = np.random.randint(0, 10)
-        disparo (coordenada1,coordenada2)
+        disparo_maquina (coordenada1,coordenada2)
 
 #FIN DE LA PARTIDA   (se puede hacer todo con un bucle while)
     
@@ -103,20 +101,48 @@ while "O" in tablero_jugadorx or "O" in tablero_maquina:
 #DISPAROS
 
 #En cada disparo se modifica tanto el tablero del contrario como la vista que yo tengo
+#Como jugadorx solamente veo mi tablero y la vista del tablero de la máquina con X y -
 
-def disparo (coordenada1,coordenada2):
-    if tablero[coordenada1,coordenada2]== " ":
-        tablero[coordenada1,coordenada2]= "_"
+#Disparo de persona
+def disparo_jugadorx (coordenada1,coordenada2):
+    if tablero_maquina[coordenada1,coordenada2]== " ":
+        tablero_maquina[coordenada1,coordenada2]= "_"
+        tablero_vista_para_jugadorx_de_maquina=[coordenada1,coordenada2]= "_"
         print("¡Agua!")
-        print(tablero)
+        print(tablero_vista_para_jugadorx_de_maquina)
         break
-
-    if tablero[coordenada1,coordenada2]== "O":
-        tablero[coordenada1,coordenada2]= "X"
-        print("¡Tocado!")
-        print(tablero)
+    if tablero_maquina[coordenada1,coordenada2]== "O":
+        tablero_maquina[coordenada1,coordenada2]= "X"
+        tablero_vista_para_jugadorx_de_maquina[coordenada1,coordenada2]= "X"
+        print("¡Has tocado un barco!")
+        print(tablero_vista_para_jugadorx_de_maquina)
+        continue
+    if tablero_maquina[coordenada1,coordenada2]== "O" and ------ #algo!
+        tablero_maquina[coordenada1,coordenada2]= "X"
+        tablero_vista_para_jugadorx_de_maquina[coordenada1,coordenada2]= "X"
+        print("¡Has hundido un barco!")
+        barcos_hundidos_demaquina= barcos_hundidos_demaquina+1
+        print(tablero_vista_para_jugadorx_de_maquina)
         continue
 
+#Disparo de la máquina
+def disparo_maquina (coordenada1,coordenada2):
+    if tablero_maquina[coordenada1,coordenada2]== " ":
+        tablero_maquina[coordenada1,coordenada2]= "_"
+        tablero_vista_para_maquina_de_jugadorx[coordenada1,coordenada2]= "_"
+        print("¡Agua!")
+        break
+    if tablero_maquina[coordenada1,coordenada2]== "O":
+        tablero_maquina[coordenada1,coordenada2]= "X"
+        tablero_vista_para_maquina_de_jugadorx[coordenada1,coordenada2]= "X"
+        print("¡La máquina te ha tocado un barco!")
+        continue
+    if tablero_maquina[coordenada1,coordenada2]== "O" and ------ #algo!
+        tablero_maquina[coordenada1,coordenada2]= "X"
+        tablero_vista_para_maquina_de_jugadorx[coordenada1,coordenada2]= "X"
+        print("¡La máquina te ha hundido un barco!")
+        barcos_hundidos_dejugadorx= barcos_hundidos_dejugadorx+1
+        continue
 
 #HUNDIR UN BARCO
 Ver cómo hacer para que de hundido.
