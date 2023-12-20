@@ -97,22 +97,6 @@ def fin_partida(tablero_jugadorx, tablero_maquina):
         return True
     return False
  
-#########BUCLE PRINCIPAL ###################
-tablero_maquina = np.full((10, 10), " ")
-colocar_barcos(tablero_maquina, [1, 1, 1, 1, 2, 2, 2, 3, 3, 4])
-
-tablero_jugadorx = np.full((10, 10), " ")
-colocar_barcos(tablero_jugadorx, [1, 1, 1, 1, 2, 2, 2, 3, 3, 4])
-
-while "O" in tablero_jugadorx or "O" in tablero_maquina:  
-    turno_jugadorx(tablero_maquina)
-    if fin_partida(tablero_jugadorx, tablero_maquina):
-        break
-    turno_maquina(tablero_jugadorx)
-    if fin_partida(tablero_jugadorx, tablero_maquina):
-        break
-
-
 
 #DISPAROS
 
@@ -148,16 +132,55 @@ def disparo_maquina (coordenada1,coordenada2, tablero_jugadorx, tablero_vista_pa
         if barco_hundido(coordenada1, coordenada2, tablero_jugadorx):
             print("...y te lo ha hundido!")
 
-#HUNDIR UN BARCO
+#HUNDIR UN BARCO   (Esto lo hemos copiado porque no había manera..)
 def barco_hundido(coordenada1, coordenada2, tablero):
     dicc_esloras = {4: 1, 3: 2, 2: 3, 1: 4}  
     for cantidad, esloras in dicc_esloras.items():
         for i in range(esloras):   
             for i in range(cantidad):
-                if all(tablero[coordenada1, coordenada2 + i] == "X"):   #si todo está tocado
+                if all(tablero[coordenada1, coordenada2 + i] == "X"):   
                     return True 
     return False 
 
+
+
+
+def iniciar_juego()
+    mensaje = """
+    ¡Bienvenidx a Hundir la flota!
+        Interta 0 para INICIAR el juego.
+        Durante el juego, podrás:
+            Insertar 1 para salir del juego.
+            Insertar 2 para ver tu tablero.
+            Insertar 3 para ver tu vista del tablero de la máquina (comprobar impactos).
+    """
+    print(mensaje)
+    opcion=int(input("Inserta opción: "))
+    while opcion != 1:
+        if opcion == 0:                                         #ESTE ES EL BUCLE PRINCIPAL
+            tablero_maquina = np.full((10, 10), " ")                    #Aquí colocamos barcos
+            colocar_barcos(tablero_maquina, [1, 1, 1, 1, 2, 2, 2, 3, 3, 4])
+
+            tablero_jugadorx = np.full((10, 10), " ")
+            colocar_barcos(tablero_jugadorx, [1, 1, 1, 1, 2, 2, 2, 3, 3, 4])
+
+            while "O" in tablero_jugadorx or "O" in tablero_maquina:    #Aquí empieza el juego
+                turno_jugadorx(tablero_maquina)
+                if fin_partida(tablero_jugadorx, tablero_maquina):
+                    break
+                turno_maquina(tablero_jugadorx)
+                if fin_partida(tablero_jugadorx, tablero_maquina):
+                    break
+        if opcion ==2:
+            print(tablero_jugadorx)
+        if opcion ==3:
+            print(tablero_vista_para_jugadorx_de_maquina)
+    print("¡Hasta luego!")
+
+
+#########AQUÍ INICIAMOS EL JUEGO ###################
+
+iniciar_juego()
 
 
 
