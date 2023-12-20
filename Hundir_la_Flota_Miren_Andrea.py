@@ -37,7 +37,7 @@ def colocar_barcos(tablero,lista_esloras):
 
 #Tableros en que se ven barcos de jugadorx
 tablero_jugadorx = np.full((10, 10)," ")
-colocar_barcos(tablero_jugadorx, [1,1,1,1,2,2,2,3,3,4] )   #Colocación aleatoria
+colocar_barcos(tablero_jugadorx, [1,1,1,1,2,2,2,3,3,4])   #Colocación aleatoria
 
 tablero_vista_para_maquina_de_jugadorx=np.full((10, 10)," ")     #en este se ve el avance de jugadorx en el de maquina
     #En este solamente se verán X y - (NO LO VE JUGADORX)
@@ -145,7 +145,7 @@ def barco_hundido(coordenada1, coordenada2, tablero):
 
 
 
-def iniciar_juego()
+def iniciar_juego():
     mensaje = """
     ¡Bienvenidx a Hundir la flota!
         Interta 0 para INICIAR el juego.
