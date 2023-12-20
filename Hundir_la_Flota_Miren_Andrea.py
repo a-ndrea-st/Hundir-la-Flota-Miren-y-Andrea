@@ -5,12 +5,10 @@ import random
 
 #FUNCIÓN PARA LA COLOCACIÓN ALEATORIA DE LOS BARCOS EN LOS TABLEROS (JUGADORX Y MÁQUINA)
 lista_esloras = [1,1,1,1,2,2,2,3,3,4]
-barcos_colocados=0
-
 def colocar_barcos(tablero,lista_esloras):
     tablero= np.full((10, 10)," ")
-    lista_esloras = [1,1,1,1,2,2,2,3,3,4]
     for eslora in lista_esloras:
+        barcos_colocados = 0
         while barcos_colocados < len(lista_esloras):
             orientacion = random.choice(['E', 'O', 'N', 'S'])
             fila = np.random.randint(0,10)
@@ -31,9 +29,7 @@ def colocar_barcos(tablero,lista_esloras):
                 tablero[fila:fila + eslora, columna] = 'O'
                 barcos_colocados = barcos_colocados +1
                 break
-            else:
-                continue
-    tablero
+    return tablero
 
 #Tableros en que se ven barcos de jugadorx
 tablero_jugadorx = np.full((10, 10)," ")
