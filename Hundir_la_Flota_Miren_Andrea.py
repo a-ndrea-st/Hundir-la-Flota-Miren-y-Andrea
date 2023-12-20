@@ -43,8 +43,7 @@ tablero_maquina = np.full((10, 10)," ")    #Tablero inicial
 colocar_barcos(tablero_maquina , [1,1,1,1,2,2,2,3,3,4] )   #Colocación aleatoria
 
 tablero_vista_para_jugadorx_de_maquina= np.full((10, 10)," ")   #Tablero de vista PARA JUGADORX. Salen disparos
-    #En este solamente se verán X y -
-
+    #En este solamente se verán "X" y "-""
 
 
 #DURANTE EL JUEGO
@@ -55,20 +54,21 @@ La máquina va modificando el tablero de jugadorx y el de su vista
 #ÍNDICE
 
 def seguir_jugando():
-    mensaje = """
-        Recuerda que puedes:
-        Insertar 1 para salir del juego
-        Insertar 2 para ver tu tablero
-        Insertar 3 para ver tu vista del tablero de la máquina (comprobar impactos)
-        """
-    print(mensaje)
-    opcion=int(input("Inserta opción: "))
+    opcion = 0
     while opcion != 1:
+        mensaje = """
+            Recuerda que puedes:
+            Insertar 1 para salir del juego
+            Insertar 2 para ver tu tablero
+            Insertar 3 para ver tu vista del tablero de la máquina (comprobar impactos)
+            """
+        print(mensaje)
+        opcion=int(input("Inserta opción: "))
         if opcion ==2:
             print(tablero_jugadorx)
         if opcion ==3:
             print(tablero_vista_para_jugadorx_de_maquina)
-    print("¡Hasta luego!")
+    print("¡Hasta luego!")   #Salir
 
 #FUNCIONES PARA CADA TURNO:
 def turno_jugadorx(tablero_maquina):
@@ -132,19 +132,20 @@ def disparo_maquina (coordenada1,coordenada2, tablero_jugadorx, tablero_vista_pa
 def barco_hundido(coordenada1, coordenada2, tablero):
     dicc_esloras = {4: 1, 3: 2, 2: 3, 1: 4}  
     for cantidad, esloras in dicc_esloras.items():
-        for i in range(esloras):   
-            for i in range(cantidad):
-                if all(tablero[coordenada1, coordenada2 + i] == "X"):   
+        for _ in range(esloras):   
+            for _ in range(cantidad):
+                if all(tablero[coordenada1, coordenada2 + _] == "X"):   
                     return True 
     return False 
 
 
 
+#ÍNDICE PRINCIPAL
 
 def iniciar_juego():
     mensaje = """
     ¡Bienvenidx a Hundir la flota!
-        Interta 0 para INICIAR el juego.
+        Inserta 0 para INICIAR el juego.
         Durante el juego, podrás:
             Insertar 1 para salir del juego.
             Insertar 2 para ver tu tablero.
