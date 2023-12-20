@@ -20,13 +20,15 @@ Para el desarrollo de la partida, necesitamos **4 tableros**:
 Hemos definido una función inicial para **distribuir aleatoriamente** los barcos tanto de la máquina como de lx jugadorx.
 
 Funciones para cada **turno**:
-  En el turno de lx jugadorx, dispara al tablero de la máquina. Puede fallar y disparar al agua o tocar el barco. 
+En el turno de lx jugadorx, dispara al tablero de la máquina. Puede fallar y disparar al agua o tocar el barco. 
 
 Función de **índice**
-  Dentro del turno de lx jugadorx, permite salir o imprimir el tablero para ver cómo va la partida.
+Dentro del turno de lx jugadorx, permite salir o imprimir el tablero para ver cómo va la partida. Esta opción solamente la tiene lx jugadorx.
 
-Fundión de **disparar**:
-
+Función de **disparar**:
+Hemos definido dos funciones de disparar, una de lx jugadorx y otra de la máquina. Ambas tienen tres posibilidades: agua, tocar el barco y hundir un barco.
 
 Función de **fin de partida**:
-  Acaba cuando todo sean barcos hundidos ("X") en uno de los tableros. Es decir, que no queden barcos ("O").
+El juego acaba cuando todo sean barcos hundidos ("X") en uno de los tableros (jugadorx o máquina). Es decir, que no queden barcos ("O").
+
+Para englobarlo todo, hemos definido una **función de iniciar juego** que recoge la distintas opciones que tiene lx jugadorx para iniciar/salir/ver tableros del juego. Dentro de esta función, se encuentra la colocación de los barcos y el juego por turnos, hasta el fin de la partida.
