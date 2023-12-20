@@ -35,6 +35,13 @@ def colocar_barcos(tablero,lista_esloras):
                 continue
     tablero
 
+#Tableros en que se ven barcos de jugadorx
+tablero_jugadorx = np.full((10, 10)," ")
+colocar_barcos(tablero_jugadorx, [1,1,1,1,2,2,2,3,3,4] )   #Colocación aleatoria
+
+tablero_vista_para_maquina_de_jugadorx=np.full((10, 10)," ")     #en este se ve el avance de jugadorx en el de maquina
+    #En este solamente se verán X y - (NO LO VE JUGADORX)
+
 #Tableros en que se ven barcos de máquina
 tablero_maquina = np.full((10, 10)," ")    #Tablero inicial
 colocar_barcos(tablero_maquina , [1,1,1,1,2,2,2,3,3,4] )   #Colocación aleatoria
@@ -42,12 +49,7 @@ colocar_barcos(tablero_maquina , [1,1,1,1,2,2,2,3,3,4] )   #Colocación aleatori
 tablero_vista_para_jugadorx_de_maquina= np.full((10, 10)," ")   #Tablero de vista PARA JUGADORX. Salen disparos
     #En este solamente se verán X y -
 
-#Tableros en que se ven barcos de jugadorx
-tablero_jugadorx = np.full((10, 10)," ")
-colocar_barcos(tablero_jugadorx, [1,1,1,1,2,2,2,3,3,4] )   #Colocación aleatoria
 
-tablero_vista_para_maquina_de_jugadorx=np.full((10, 10)," ")     #en este se ve el avance de jugadorx en el de maquina
-    #En este solamente se verán X y - (NO LO VE JUGADORX
 
 #DURANTE EL JUEGO
 '''Jugadorx va modificando el tablero de la máquina y el de su vista
@@ -107,12 +109,9 @@ while "O" in tablero_jugadorx or "O" in tablero_maquina:
     if fin_partida(tablero_jugadorx, tablero_maquina):
         break
     turno_maquina(tablero_jugadorx)
-    if fin_partida(tablero_jugadorx, tablero_maquina)
+    if fin_partida(tablero_jugadorx, tablero_maquina):
         break
 
-if "O" not in tablero_jugadorx:
-    print("¡Perdiste!")
-if "O" not in tablero_maquina:   
 
 
 #DISPAROS
